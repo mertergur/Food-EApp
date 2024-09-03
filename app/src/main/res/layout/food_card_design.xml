@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:backgroundTint="@color/light"
         app:cardCornerRadius="6dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,10 +44,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:fontFamily="@font/bebas_neue"
                 android:text="50.00 ₺"
                 android:textColor="@color/primary"
-                android:textSize="14sp"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/cardFoodNameTxtView"
                 app:layout_constraintTop_toBottomOf="@+id/cardFoodNameTxtView" />
 
@@ -58,7 +61,6 @@
                 android:background="@color/primary"
                 app:layout_constraintBottom_toBottomOf="@+id/cardFoodPriceTxtView"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/cardFoodNameTxtView"
                 app:shapeAppearanceOverlay="@style/RoundedImageView"
                 app:srcCompat="@drawable/add_shopping_cart_24" />
 

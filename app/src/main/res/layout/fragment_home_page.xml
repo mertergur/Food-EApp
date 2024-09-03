@@ -1,81 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".ui.fragment.HomePageFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/poppins_medium"
-        android:text="Hello, Mert!"
-        android:textColor="@color/dark"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
+        <variable
+            name="foodsAdapter"
+            type="com.example.foodeapp.ui.adapter.FoodsAdapter" />
+    </data>
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="@font/bebas_neue"
-        android:text="HOME"
-        android:textColor="@color/secondary"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/homeAdressImageView"
-        app:layout_constraintEnd_toStartOf="@+id/homeAdressImageView"
-        app:layout_constraintTop_toTopOf="@+id/homeAdressImageView" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.fragment.HomePageFragment">
 
-    <ImageView
-        android:id="@+id/homeCampaignImageView"
-        android:layout_width="0dp"
-        android:layout_height="214dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@drawable/fifty_percent_campaign" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Hello, Mert!"
+            android:textColor="@color/dark"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/homeAdressImageView"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="32dp"
-        android:src="@drawable/adress_icon"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView"
-        app:layout_constraintVertical_bias="1.0"
-        app:tint="@color/secondary" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/bebas_neue"
+            android:text="HOME"
+            android:textColor="@color/secondary"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/homeAdressImageView"
+            app:layout_constraintEnd_toStartOf="@+id/homeAdressImageView"
+            app:layout_constraintTop_toTopOf="@+id/homeAdressImageView" />
 
-    <SearchView
-        android:id="@+id/HomeSearchView"
-        android:layout_width="0dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homeCampaignImageView" />
+        <ImageView
+            android:id="@+id/homeCampaignImageView"
+            android:layout_width="0dp"
+            android:layout_height="214dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:srcCompat="@drawable/fifty_percent_campaign" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/homeRV"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/HomeSearchView" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/homeAdressImageView"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="32dp"
+            android:src="@drawable/adress_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView"
+            app:layout_constraintVertical_bias="1.0"
+            app:tint="@color/secondary" />
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/HomeSearchView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/homeCampaignImageView"
+            app:iconifiedByDefault="false"
+            app:queryHint="Search"
+            app:searchHintIcon="@null"
+            android:focusable="false"
+            app:closeIcon="@drawable/close_24"
+            app:searchIcon="@drawable/search_24"
+
+            app:queryBackground="@null"
+            android:background="@drawable/search_bg" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/homeRV"
+            android:adapter="@{foodsAdapter}"
+            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            app:spanCount="3"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/HomeSearchView" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
