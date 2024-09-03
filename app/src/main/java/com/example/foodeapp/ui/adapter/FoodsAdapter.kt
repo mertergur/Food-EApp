@@ -3,9 +3,11 @@ package com.example.foodeapp.ui.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodeapp.data.entity.Foods
 import com.example.foodeapp.databinding.FoodCardDesignBinding
+import com.example.foodeapp.ui.fragment.HomePageFragmentDirections
 import com.google.android.material.snackbar.Snackbar
 
 class FoodsAdapter(var mContext: Context, var foodsList: List<Foods>): RecyclerView.Adapter<FoodsAdapter.CardViewHolder>() {
@@ -24,6 +26,11 @@ class FoodsAdapter(var mContext: Context, var foodsList: List<Foods>): RecyclerV
         v.cardFoodImageView.setImageResource(mContext.resources.getIdentifier(food.yemek_resim_adi, "drawable", mContext.packageName))
         v.cardFoodNameTxtView.text = food.yemek_adi
         v.cardFoodPriceTxtView.text = "${food.yemek_fiyat} ₺"
+
+        v.cardFood.setOnClickListener {
+            val direction = HomePageFragmentDirections.actionHomePageFragmentToFoodDetailsFragment2(food = food)
+            Navigation.findNavController(it).navigate(direction)
+        }
 
         v.cardFoodAddBasketImageView.setOnClickListener {
             Snackbar.make(it, "${food.yemek_adi} sepete eklendi", Snackbar.LENGTH_SHORT).show()

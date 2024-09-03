@@ -9,5 +9,21 @@
         android:id="@+id/homePageFragment"
         android:name="com.example.foodeapp.ui.fragment.HomePageFragment"
         android:label="fragment_home_page"
-        tools:layout="@layout/fragment_home_page" />
+        tools:layout="@layout/fragment_home_page" >
+        <action
+            android:id="@+id/action_homePageFragment_to_foodDetailsFragment2"
+            app:destination="@id/foodDetailsFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/foodDetailsFragment2"
+        android:name="com.example.foodeapp.ui.fragment.FoodDetailsFragment"
+        android:label="fragment_food_details"
+        tools:layout="@layout/fragment_food_details" >
+        <argument
+            android:name="food"
+            app:argType="com.example.foodeapp.data.entity.Foods" />
+        <action
+            android:id="@+id/action_foodDetailsFragment2_to_homePageFragment"
+            app:destination="@id/homePageFragment" />
+    </fragment>
 </navigation>
