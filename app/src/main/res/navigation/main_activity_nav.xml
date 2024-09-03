@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_home_page" >
         <action
             android:id="@+id/action_homePageFragment_to_foodDetailsFragment2"
-            app:destination="@id/foodDetailsFragment2" />
+            app:destination="@id/foodDetailsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/foodDetailsFragment2"
+        android:id="@+id/foodDetailsFragment"
         android:name="com.example.foodeapp.ui.fragment.FoodDetailsFragment"
         android:label="fragment_food_details"
         tools:layout="@layout/fragment_food_details" >
@@ -26,4 +26,19 @@
             android:id="@+id/action_foodDetailsFragment2_to_homePageFragment"
             app:destination="@id/homePageFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.foodeapp.ui.fragment.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/favFragment"
+        android:name="com.example.foodeapp.ui.fragment.FavFragment"
+        android:label="fragment_fav"
+        tools:layout="@layout/fragment_fav" />
+    <fragment
+        android:id="@+id/basketFragment"
+        android:name="com.example.foodeapp.ui.fragment.BasketFragment"
+        android:label="fragment_basket"
+        tools:layout="@layout/fragment_basket" />
 </navigation>

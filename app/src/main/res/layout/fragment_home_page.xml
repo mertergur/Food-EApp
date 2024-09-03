@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.HomePageFragment" >
+    android:background="@color/white"
+    tools:context=".ui.fragment.HomePageFragment">
 
     <TextView
         android:id="@+id/textView"
@@ -53,8 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView"
         app:layout_constraintVertical_bias="1.0"
-        app:tint="@color/secondary"
-        />
+        app:tint="@color/secondary" />
 
     <SearchView
         android:id="@+id/HomeSearchView"
