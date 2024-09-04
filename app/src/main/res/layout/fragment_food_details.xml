@@ -45,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:onClick="@{() -> foodDetailsFragment.favButton()}"
+                android:onClick="@{() -> foodDetailsFragment.favButton(foodObject)}"
                 android:layout_margin="8dp"
                 android:backgroundTint="@android:color/transparent"
                 android:src="@drawable/unfav_24"

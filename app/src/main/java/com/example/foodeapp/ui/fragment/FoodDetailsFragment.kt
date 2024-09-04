@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.foodeapp.R
+import com.example.foodeapp.data.entity.Foods
 import com.example.foodeapp.databinding.FragmentFoodDetailsBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -18,6 +19,7 @@ class FoodDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentFoodDetailsBinding
     private  var favIsChecked = false
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +42,9 @@ class FoodDetailsFragment : Fragment() {
             )
         )
 
+        uploadFav(food)
+
+
 
 
         return binding.root
@@ -60,7 +65,7 @@ class FoodDetailsFragment : Fragment() {
         findNavController().navigateUp()
     }
 
-    fun favButton(){
+    fun favButton(isChecked: Foods){
         favIsChecked = !favIsChecked
         if(favIsChecked){
             binding.foodFavButton.setImageResource(R.drawable.fav_24)
@@ -71,6 +76,17 @@ class FoodDetailsFragment : Fragment() {
 
     fun addBasketButton(yemek_adet:String, yemek_adi: String, yemek_fiyat: String){
         Log.e("addBasket","$yemek_adet adet $yemek_adi $yemek_fiyat karşılığında Sepete eklendi.")
+    }
+
+    fun uploadFav(food: Foods){
+
+        if(food.is_favoirte){
+            favIsChecked = true
+            binding.foodFavButton.setImageResource(R.drawable.fav_24)
+        }else{
+            favIsChecked = false
+            binding.foodFavButton.setImageResource(R.drawable.unfav_24)
+        }
     }
 
 }
