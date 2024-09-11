@@ -8,12 +8,14 @@ import androidx.lifecycle.ViewModel
 import com.example.foodeapp.data.entity.Foods
 import com.example.foodeapp.data.entity.Users
 import com.example.foodeapp.data.repo.FoodERepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomePageViewModel: ViewModel() {
-    var fRepo = FoodERepository()
+@HiltViewModel
+class HomePageViewModel @Inject constructor(var fRepo: FoodERepository): ViewModel() {
     var foodList = MutableLiveData<List<Foods>>()
 
     init {

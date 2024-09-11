@@ -5,12 +5,14 @@ import androidx.lifecycle.ViewModel
 import com.example.foodeapp.data.entity.Favs
 import com.example.foodeapp.data.entity.Users
 import com.example.foodeapp.data.repo.FoodERepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class FavViewModel: ViewModel() {
-    var fRepo = FoodERepository()
+@HiltViewModel
+class FavViewModel @Inject constructor(var fRepo: FoodERepository): ViewModel() {
     var favList = MutableLiveData<List<Favs>>()
     lateinit var user: Users
 

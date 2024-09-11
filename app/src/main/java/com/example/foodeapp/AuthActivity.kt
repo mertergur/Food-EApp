@@ -13,7 +13,9 @@ import androidx.navigation.ui.NavigationUI
 import com.example.foodeapp.databinding.ActivityAuthBinding
 import com.example.foodeapp.ui.viewmodel.HomePageViewModel
 import com.example.foodeapp.util.coloredString
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AuthActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAuthBinding
     override fun onCreate(savedInstanceState: Bundle?) {

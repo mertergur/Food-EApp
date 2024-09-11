@@ -9,12 +9,14 @@ import androidx.lifecycle.ViewModel
 import com.example.foodeapp.MainActivity
 import com.example.foodeapp.data.entity.Users
 import com.example.foodeapp.data.repo.FoodERepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LoginViewModel: ViewModel() {
-    var fRepo = FoodERepository()
+@HiltViewModel
+class LoginViewModel @Inject constructor(var fRepo: FoodERepository): ViewModel() {
 
 
     fun login(context: Context, fragment: Fragment, email: String, password: String){

@@ -11,9 +11,7 @@ import com.example.foodeapp.data.entity.Favs
 import com.example.foodeapp.data.entity.Foods
 import com.example.foodeapp.data.entity.Users
 
-class FoodERepository {
-
-    var fds = FoodEDataSource()
+class FoodERepository (var fds: FoodEDataSource) {
 
     suspend fun uploadFoods(): List<Foods> = fds.uploadFoods()
 

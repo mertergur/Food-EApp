@@ -15,8 +15,9 @@ import com.example.foodeapp.data.entity.Users
 import com.example.foodeapp.databinding.FragmentBasketBinding
 import com.example.foodeapp.ui.adapter.BasketAdapter
 import com.example.foodeapp.ui.viewmodel.BasketViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class BasketFragment : Fragment() {
 
     private lateinit var binding: FragmentBasketBinding

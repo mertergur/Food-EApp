@@ -15,8 +15,9 @@ import com.example.foodeapp.databinding.FragmentFavBinding
 import com.example.foodeapp.ui.adapter.FavAdapter
 import com.example.foodeapp.ui.adapter.FoodsAdapter
 import com.example.foodeapp.ui.viewmodel.FavViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class FavFragment : Fragment() {
 
     private lateinit var binding: FragmentFavBinding

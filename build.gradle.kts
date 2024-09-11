@@ -5,6 +5,7 @@ buildscript {
     }
     dependencies {
         classpath(libs.androidx.navigation.safe.args.gradle.plugin)
+        classpath("com.google.dagger:hilt-android-gradle-plugin:2.48.1")
     }
 }
 plugins {

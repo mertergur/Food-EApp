@@ -16,7 +16,9 @@ import com.example.foodeapp.ui.fragment.FavFragment
 import com.example.foodeapp.ui.fragment.HomePageFragment
 import com.example.foodeapp.ui.fragment.ProfileFragment
 import com.example.foodeapp.ui.viewmodel.HomePageViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val viewModelHome: HomePageViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding

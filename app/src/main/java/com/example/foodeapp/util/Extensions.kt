@@ -24,7 +24,3 @@ fun TextView.coloredString(textView:TextView,selectedColor: Int, coloredPart: In
     textView.text = spannableString
 }
 
-fun Navigation.goTo(it: View, id: Int){
-    findNavController(it).navigate(id)
-}
-

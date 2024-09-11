@@ -21,9 +21,10 @@ import com.example.foodeapp.data.entity.Users
 import com.example.foodeapp.databinding.FragmentLoginBinding
 import com.example.foodeapp.ui.viewmodel.LoginViewModel
 import com.example.foodeapp.util.coloredString
-import com.example.foodeapp.util.goTo
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding

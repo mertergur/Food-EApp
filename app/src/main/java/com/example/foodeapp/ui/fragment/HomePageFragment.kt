@@ -23,7 +23,9 @@ import com.example.foodeapp.ui.viewmodel.FoodDetailsViewModel
 import com.example.foodeapp.ui.viewmodel.HomePageViewModel
 import com.example.foodeapp.ui.viewmodel.RegisterViewModel
 import com.example.foodeapp.util.coloredString
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomePageFragment : Fragment() {
 
     private lateinit var binding: FragmentHomePageBinding

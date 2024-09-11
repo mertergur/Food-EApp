@@ -16,7 +16,9 @@ import com.example.foodeapp.data.entity.Users
 import com.example.foodeapp.databinding.FragmentRegisterBinding
 import com.example.foodeapp.ui.viewmodel.RegisterViewModel
 import com.example.foodeapp.util.coloredString
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RegisterFragment : Fragment() {
 
     private lateinit var binding: FragmentRegisterBinding
