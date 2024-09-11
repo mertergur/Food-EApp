@@ -11,6 +11,8 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.foodeapp.databinding.ActivityAuthBinding
+import com.example.foodeapp.ui.viewmodel.HomePageViewModel
+import com.example.foodeapp.util.coloredString
 
 class AuthActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAuthBinding
@@ -18,23 +20,9 @@ class AuthActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        coloredString()
+
+        val selectedColor: Int = R.color.primary
+        binding.appNameTextView.coloredString(binding.appNameTextView,selectedColor,2,this)
+
     }
-
-    fun coloredString(){
-        val appName = "FOOD-E"
-        val color = ContextCompat.getColor(this,R.color.primary)
-        val colorStart = appName.length-2
-        val colorEnd = appName.length
-        val spannableString = SpannableString(appName)
-        spannableString.setSpan(
-            ForegroundColorSpan(color),
-            colorStart,
-            colorEnd,
-            SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-
-        binding.appNameTextView.text = spannableString
-    }
-
 }

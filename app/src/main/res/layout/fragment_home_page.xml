@@ -5,6 +5,13 @@
 
     <data>
         <variable
+            name="userName"
+            type="String" />
+        <variable
+            name="adressTitle"
+            type="String" />
+
+        <variable
             name="foodsAdapter"
             type="com.example.foodeapp.ui.adapter.FoodsAdapter" />
     </data>
@@ -16,25 +23,25 @@
         tools:context=".ui.fragment.HomePageFragment">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textViewHello"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/poppins_medium"
-            android:text="Hello, Mert!"
+            android:text= "@{@string/hello(userName)}"
             android:textColor="@color/dark"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textViewAdressTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:fontFamily="@font/bebas_neue"
-            android:text="HOME"
+            android:text="@{adressTitle}"
             android:textColor="@color/secondary"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@+id/homeAdressImageView"
@@ -46,9 +53,10 @@
             android:layout_width="0dp"
             android:layout_height="214dp"
             app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="@string/campaign_image"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textViewHello"
             app:srcCompat="@drawable/fifty_percent_campaign" />
 
         <ImageView
@@ -57,9 +65,10 @@
             android:layout_height="32dp"
             android:layout_marginEnd="32dp"
             android:src="@drawable/adress_icon"
-            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            android:contentDescription="@string/location_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewHello"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView"
+            app:layout_constraintTop_toTopOf="@+id/textViewHello"
             app:layout_constraintVertical_bias="1.0"
             app:tint="@color/secondary" />
 

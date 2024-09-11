@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_foodDetailsFragment2_to_homePageFragment"
             app:destination="@id/homePageFragment" />
+        <argument
+            android:name="user"
+            app:argType="com.example.foodeapp.data.entity.Users" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"

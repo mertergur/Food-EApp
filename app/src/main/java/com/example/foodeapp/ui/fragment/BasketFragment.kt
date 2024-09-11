@@ -1,50 +1,63 @@
 package com.example.foodeapp.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodeapp.R
 import com.example.foodeapp.data.entity.Basket
+import com.example.foodeapp.data.entity.Users
 import com.example.foodeapp.databinding.FragmentBasketBinding
 import com.example.foodeapp.ui.adapter.BasketAdapter
+import com.example.foodeapp.ui.viewmodel.BasketViewModel
 
 
 class BasketFragment : Fragment() {
 
     private lateinit var binding: FragmentBasketBinding
+    private lateinit var viewModel: BasketViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentBasketBinding.inflate(inflater, container, false)
+        binding.basketFragment = this
 
-        val basketList = ArrayList<Basket>()
+        val user = requireActivity().intent.getSerializableExtra("user") as Users
+        viewModel.user = user
+        viewModel.uploadBasket()
 
-        val b1 = Basket(1,"Ayran","ayran",25,10,"mert_ergur")
-        val b2 = Basket(2,"Baklava","baklava",85,1,"mert_ergur")
-        val b3 = Basket(3,"Fanta","fanta",25,1,"mert_ergur")
+        viewModel.basketList.observe(viewLifecycleOwner){
 
-        basketList.add(b1)
-        basketList.add(b2)
-        basketList.add(b3)
+            val basketAdapter = BasketAdapter(requireContext(),it,viewModel)
+            binding.basketAdapter = basketAdapter
 
-        binding.basketRV.layoutManager = LinearLayoutManager(requireContext())
-        val basketAdapter = BasketAdapter(requireContext(),basketList)
-        binding.basketRV.adapter = basketAdapter
-
-        var totalPrice = 0
-        for (i in basketList){
-            totalPrice += i.yemek_fiyat * i.yemek_siparis_adet
+            var totalPrice = 0
+            for (i in it){
+                totalPrice += i.yemek_fiyat * i.yemek_siparis_adet
+            }
+            binding.basketPrice = totalPrice.toString()
         }
-        binding.textViewTotalPrice.text = "$totalPrice ₺"
+
+
 
         return binding.root
 
+    }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempViewModel: BasketViewModel by viewModels()
+        viewModel = tempViewModel
+    }
 
+    fun checkoutButton(){
+        println("checkout")
     }
 }

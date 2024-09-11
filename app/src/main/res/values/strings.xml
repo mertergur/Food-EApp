@@ -1,5 +1,35 @@
 <resources>
-    <string name="app_name">FoodEApp</string>
+    <string name="app_name">Food-E</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- HomePage Fragment Strings -->
+    <string name="hello">Hello, %s!</string>
+    <string name="campaign_image">Campaign Image</string>
+    <string name="location_icon">location icon</string>
+
+    <!-- Login Fragment Strings -->
+    <string name="register_title">Register</string>
+    <string name="login_title">Login</string>
+    <string name="email">E-mail</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="create_account">Don\'t have an account? Register</string>
+    <string name="proceed_to_checkout">PROCEED TO CHECKOUT</string>
+    <!-- Register Fragment Strings -->
+    <string name="already_account">Already have an account? Login</string>
+    <string name="full_name">Full Name</string>
+    <string name="phone">Phone</string>
+    <!-- Food Details Fragment Strings  -->
+    <string name="delivery_time">32 mins</string>
+    <string name="price">%s ₺</string>
+    <string name="quantity">quantity</string>
+    <string name="sub_total">sub total</string>
+    <string name="add_basket">add to basket</string>
+    <!-- Basket Fragment Strings  -->
+    <string name="basket_title">basket</string>
+    <string name="basket_total">total</string>
+    <!-- Fav Fragment Strings  -->
+    <string name="fav_title">liked</string>
+    <!-- -->
+
 </resources>

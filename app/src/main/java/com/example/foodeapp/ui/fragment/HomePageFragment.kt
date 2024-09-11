@@ -1,84 +1,99 @@
 package com.example.foodeapp.ui.fragment
 
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.foodeapp.R
+import com.example.foodeapp.data.entity.Favs
 import com.example.foodeapp.data.entity.Foods
+import com.example.foodeapp.data.entity.Users
 import com.example.foodeapp.databinding.FragmentHomePageBinding
 import com.example.foodeapp.ui.adapter.FoodsAdapter
+import com.example.foodeapp.ui.viewmodel.FoodDetailsViewModel
+import com.example.foodeapp.ui.viewmodel.HomePageViewModel
+import com.example.foodeapp.ui.viewmodel.RegisterViewModel
+import com.example.foodeapp.util.coloredString
 
 class HomePageFragment : Fragment() {
 
     private lateinit var binding: FragmentHomePageBinding
+    private lateinit var viewModel: HomePageViewModel
+    private lateinit var viewModelDetailsFragment: FoodDetailsViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_home_page, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home_page, container, false)
+//        val user = Users(1,"Mert Ergür","mert_2626@live.com","05369548515","123123")
+
+        val user = requireActivity().intent.getSerializableExtra("user") as Users
 
 
+        val userName = user.user_fullname.split(" ").first().replaceFirstChar {
+            if (it.isLowerCase())
+                it.titlecase()
+            else
+                it.toString()
+        }
+        binding.userName = userName
+        viewModel.foodList.observe(viewLifecycleOwner) {
+            val foodsAdapter =
+                FoodsAdapter(requireContext(), it, user, viewModelDetailsFragment)
+            binding.foodsAdapter = foodsAdapter
+        }
 
-        val foodList = ArrayList<Foods>()
-        val f1 = Foods(1, "Ayran", "ayran", 25,false)
-        val f2 = Foods(2, "Baklava", "baklava", 85,true)
-        val f3 = Foods(3, "Fanta", "fanta", 25,true)
-        val f4 = Foods(4, "Izgara Somon", "izgarasomon", 200,false)
-        val f5 = Foods(5, "Izgara Tavuk", "izgaratavuk", 170,false)
-        val f6 = Foods(6, "Kadayıf", "kadayif", 75,false)
-        val f7 = Foods(7, "Kahve", "kahve", 70,true)
-        val f8 = Foods(8, "Köfte", "kofte", 150,true)
-        val f9 = Foods(9, "Lazanya", "lazanya", 135,true)
-        val f10 = Foods(10, "Makarna", "makarna", 110,true)
-        val f11 = Foods(11, "Pizza", "pizza", 130,false)
-        val f12 = Foods(12, "Su", "su", 15,false)
-        val f13 = Foods(13, "Sütlaç", "sutlac", 75,true)
-        val f14 = Foods(14, "Tiramisu", "tiramisu", 75,false)
+        binding.textViewHello.text = getString(R.string.hello, userName)
+        binding.adressTitle = "home".uppercase()
 
+        val selectedColor = R.color.primary
+        val coloredPart = binding.textViewHello.text.split(" ").last().length
+        binding.textViewHello.coloredString(
+            binding.textViewHello,
+            selectedColor,
+            coloredPart,
+            requireContext()
+        )
 
-        foodList.add(f1)
-        foodList.add(f2)
-        foodList.add(f3)
-        foodList.add(f4)
-        foodList.add(f5)
-        foodList.add(f6)
-        foodList.add(f7)
-        foodList.add(f8)
-        foodList.add(f9)
-        foodList.add(f10)
-        foodList.add(f11)
-        foodList.add(f12)
-        foodList.add(f13)
-        foodList.add(f14)
-
-        binding.HomeSearchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                query?.let { search(it) }
+        binding.HomeSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                viewModel.search(query)
                 return true
             }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                newText?.let {search(newText)}
+            override fun onQueryTextChange(newText: String): Boolean {
+                viewModel.search(newText)
                 return true
             }
-
         })
 
-        val foodsAdapter = FoodsAdapter(requireContext(),foodList)
-        binding.foodsAdapter = foodsAdapter
 
         return binding.root
     }
 
-    fun search(searchKeyWord: String){
-        Log.e("food search",searchKeyWord)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempViewModel: HomePageViewModel by viewModels()
+        viewModel = tempViewModel
+
+        val tempViewModelDetailsFragment: FoodDetailsViewModel by viewModels()
+        viewModelDetailsFragment = tempViewModelDetailsFragment
     }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.uploadFoods()
+    }
+
 
 }
