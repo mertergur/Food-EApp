@@ -75,7 +75,7 @@
             android:onClick="@{() -> paymentMethodsFragment.goToAddCard()}"
             android:text="@string/add_payment_method"
             android:textAllCaps="true"
-            android:textColor="@android:color/transparent"
+            android:textColor="@android:color/white"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
