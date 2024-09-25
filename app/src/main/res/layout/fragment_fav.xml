@@ -12,7 +12,19 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/background"
         tools:context=".ui.fragment.FavFragment">
+
+        <ImageView
+            android:id="@+id/imageViewFavPlaceHolder"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewFavTitle"
+            app:srcCompat="@drawable/fav_place_holder" />
 
         <TextView
             android:id="@+id/textViewFavTitle"
@@ -23,18 +35,18 @@
             android:fontFamily="@font/bebas_neue"
             android:text="@string/fav_title"
             android:textAllCaps="true"
-            android:textColor="@color/dark"
+            android:textColor="@color/textColor"
             android:textSize="48sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/favRV"
-            android:adapter="@{favAdapter}"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="16dp"
+            android:adapter="@{favAdapter}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "320997435329",
+    "project_id": "foodeapp-ffe0e",
+    "storage_bucket": "foodeapp-ffe0e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:320997435329:android:3001b57b50fd4d75c27140",
+        "android_client_info": {
+          "package_name": "com.example.foodeapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcehnmSCzFY2WPOWttdki6dD6f4F3nvIg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

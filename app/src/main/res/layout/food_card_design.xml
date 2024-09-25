@@ -3,12 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <variable
-            name="foodObject"
-            type="com.example.foodeapp.data.entity.Foods" />
-    </data>
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,8 +13,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:backgroundTint="@color/light"
-            app:cardCornerRadius="6dp">
+            app:cardCornerRadius="6dp"
+            app:cardElevation="3dp"
+            app:cardMaxElevation="3dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -41,8 +36,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="@{foodObject.yemek_adi}"
-                    android:textColor="@color/dark"
+                    android:textColor="@color/textColor"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/cardFoodImageView" />
@@ -54,7 +48,6 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:fontFamily="@font/bebas_neue"
-                    android:text="@{@string/price(foodObject.yemek_fiyat)}"
                     android:textColor="@color/primary"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"

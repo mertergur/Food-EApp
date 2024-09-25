@@ -12,6 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/background"
         tools:context=".ui.fragment.RegisterFragment">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -161,10 +162,11 @@
             android:layout_marginBottom="24dp"
             android:backgroundTint="@color/primary"
             android:fontFamily="@font/bebas_neue"
+            android:onClick="@{() -> registerFragment.registerButton(fullNameEditText.getText().toString(), emailEditText.getText().toString(), phoneEditText.getText().toString(), passwordEditText.getText().toString())}"
             android:text="@string/register_title"
             android:textAllCaps="true"
+            android:textColor="@android:color/white"
             android:textSize="24sp"
-            android:onClick="@{() -> registerFragment.registerButton(fullNameEditText.getText().toString(), emailEditText.getText().toString(), phoneEditText.getText().toString(), passwordEditText.getText().toString())}"
             app:layout_constraintBottom_toTopOf="@+id/textViewGoToLogin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -195,7 +197,7 @@
             android:fontFamily="@font/bebas_neue"
             android:text="@string/register_title"
             android:textAllCaps="true"
-            android:textColor="@color/dark"
+            android:textColor="@color/textColor"
             android:textSize="48sp"
             app:layout_constraintBottom_toTopOf="@+id/textInputLayoutRegister1"
             app:layout_constraintStart_toStartOf="parent"

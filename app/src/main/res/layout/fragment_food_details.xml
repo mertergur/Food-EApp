@@ -16,9 +16,6 @@
         <variable
             name="subTotalPrice"
             type="String" />
-        <variable
-            name="userObject"
-            type="com.example.foodeapp.data.entity.Users" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -54,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:onClick="@{() -> foodDetailsFragment.favButton(foodObject)}"
+                android:onClick="@{() -> foodDetailsFragment.favButton(foodObject.yemek_id)}"
                 android:layout_margin="8dp"
                 android:backgroundTint="@android:color/transparent"
                 android:src="@drawable/unfav_24"
@@ -84,14 +81,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:tint="@color/white" />
+            app:tint="@color/background" />
 
         <View
             android:id="@+id/view"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginTop="-2dp"
-            android:background="@color/white"
+            android:background="@color/background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -106,7 +103,7 @@
             android:layout_marginStart="16dp"
             android:fontFamily="@font/bebas_neue"
             android:text="@{foodObject.yemek_adi}"
-            android:textColor="@color/dark"
+            android:textColor="@color/textColor"
             android:textSize="48sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/foodDetailsImageView" />
@@ -143,10 +140,10 @@
             android:layout_marginBottom="32dp"
             android:backgroundTint="@color/primary"
             android:fontFamily="@font/bebas_neue"
-            android:onClick="@{() -> foodDetailsFragment.addBasketButton(foodObject.yemek_adi,foodObject.yemek_resim_adi, subTotalPrice, foodCounter, userObject.user_email)}"
+            android:onClick="@{() -> foodDetailsFragment.addBasketButton(foodObject.yemek_adi,foodObject.yemek_resim_adi, subTotalPrice, foodCounter)}"
             android:text="@string/add_basket"
             android:textAllCaps="true"
-            android:textColor="@color/white"
+            android:textColor="@color/background"
             android:textSize="28sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -160,7 +157,7 @@
             android:fontFamily="@font/bebas_neue"
             android:text="@string/sub_total"
             android:textAllCaps="true"
-            android:textColor="@color/dark"
+            android:textColor="@color/textColor"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/addBasketButton"
             app:layout_constraintEnd_toEndOf="@+id/textView3"
@@ -196,7 +193,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_medium"
             android:text="@{foodCounter}"
-            android:textColor="@color/dark"
+            android:textColor="@color/textColor"
             android:textSize="34sp"
             app:layout_constraintBottom_toBottomOf="@+id/foodSubtractButton"
             app:layout_constraintEnd_toStartOf="@+id/foodAddButton"

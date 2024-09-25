@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="addAddressFragment"
+            type="com.example.foodeapp.ui.fragment.AddAddressFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        tools:context=".ui.fragment.AddAddressFragment">
+
+        <TextView
+            android:id="@+id/textViewPageTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/bebas_neue"
+            android:text="@string/add_address"
+            android:textColor="@color/textColor"
+            android:textSize="36sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addAddressBackButton" />
+
+        <ImageButton
+            android:id="@+id/addAddressBackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@android:color/transparent"
+            android:onClick="@{() -> addAddressFragment.backButton()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_arrow_back_ios_24"
+            app:tint="@color/textColor" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutAddAdress5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:textColorHint="@color/primary"
+            app:boxCornerRadiusBottomEnd="25dp"
+            app:boxCornerRadiusTopStart="25dp"
+            app:boxStrokeColor="@color/primary"
+            app:counterTextColor="@color/primary"
+            app:cursorColor="@color/primary"
+            app:helperTextTextColor="@color/primary"
+            app:hintTextColor="@color/primaryDark"
+            app:layout_constraintBottom_toTopOf="@+id/buttonAddAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:placeholderTextColor="@color/primary"
+            app:prefixTextColor="@color/primary"
+            app:suffixTextColor="@color/primary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/countryEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="@string/country"
+                android:inputType="text"
+                android:textColorHighlight="@color/primary"
+                android:textColorHint="@color/primary" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutAddAdress4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:textColorHint="@color/primary"
+            app:boxCornerRadiusBottomEnd="25dp"
+            app:boxCornerRadiusTopStart="25dp"
+            app:boxStrokeColor="@color/primary"
+            app:counterTextColor="@color/primary"
+            app:cursorColor="@color/primary"
+            app:helperTextTextColor="@color/primary"
+            app:hintTextColor="@color/primaryDark"
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayoutAddAdress5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textInputLayoutAddAdress3"
+            app:placeholderTextColor="@color/primary"
+            app:prefixTextColor="@color/primary"
+            app:suffixTextColor="@color/primary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/cityEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="@string/city"
+                android:inputType="text"
+                android:textColorHighlight="@color/primary"
+                android:textColorHint="@color/primary" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutAddAdress3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            android:textColorHint="@color/primary"
+            app:boxCornerRadiusBottomEnd="25dp"
+            app:boxCornerRadiusTopStart="25dp"
+            app:boxStrokeColor="@color/primary"
+            app:counterTextColor="@color/primary"
+            app:cursorColor="@color/primary"
+            app:helperTextTextColor="@color/primary"
+            app:hintTextColor="@color/primaryDark"
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayoutAddAdress5"
+            app:layout_constraintEnd_toStartOf="@+id/textInputLayoutAddAdress4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:placeholderTextColor="@color/primary"
+            app:prefixTextColor="@color/primary"
+            app:suffixTextColor="@color/primary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/zipCodeEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="@string/zip_code"
+                android:inputType="text"
+                android:textColorHighlight="@color/primary"
+                android:textColorHint="@color/primary" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutAddAdress2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:textColorHint="@color/primary"
+            app:boxCornerRadiusBottomEnd="25dp"
+            app:boxCornerRadiusTopStart="25dp"
+            app:boxStrokeColor="@color/primary"
+            app:counterTextColor="@color/primary"
+            app:cursorColor="@color/primary"
+            app:helperTextTextColor="@color/primary"
+            app:hintTextColor="@color/primaryDark"
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayoutAddAdress3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:placeholderTextColor="@color/primary"
+            app:prefixTextColor="@color/primary"
+            app:suffixTextColor="@color/primary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/addressLineEditText2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="@string/address"
+                android:inputType="text"
+                android:textColorHighlight="@color/primary"
+                android:textColorHint="@color/primary" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/buttonAddAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="32dp"
+            android:backgroundTint="@color/primary"
+            android:fontFamily="@font/bebas_neue"
+            android:text="@string/add_address"
+            android:onClick="@{() -> addAddressFragment.buttonAddAddress(addressLineEditText.getText().toString().trim(), addressLineEditText2.getText().toString().trim(), zipCodeEditText.getText().toString().trim(), cityEditText.getText().toString().trim(), countryEditText.getText().toString().trim())}"
+            android:textAllCaps="true"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutAddAdress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:textColorHint="@color/primary"
+            app:boxCornerRadiusBottomEnd="25dp"
+            app:boxCornerRadiusTopStart="25dp"
+            app:boxStrokeColor="@color/primary"
+            app:counterTextColor="@color/primary"
+            app:cursorColor="@color/primary"
+            app:helperTextTextColor="@color/primary"
+            app:hintTextColor="@color/primaryDark"
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayoutAddAdress2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:placeholderTextColor="@color/primary"
+            app:prefixTextColor="@color/primary"
+            app:suffixTextColor="@color/primary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/addressLineEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="@string/address"
+                android:inputType="text"
+                android:textColorHighlight="@color/primary"
+                android:textColorHint="@color/primary" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -17,7 +17,8 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:animateLayoutChanges="false">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -41,8 +42,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="@{basketObject.yemek_adi}"
-                    android:textColor="@color/dark"
+                    android:textColor="@color/textColor"
                     android:textSize="18sp"
                     app:layout_constraintStart_toEndOf="@+id/basketItemImage"
                     app:layout_constraintTop_toTopOf="@+id/basketItemImage" />
@@ -52,7 +52,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bebas_neue"
-                    android:text="@{@string/price((basketObject.yemek_fiyat * basketObject.yemek_siparis_adet))}"
                     android:textColor="@color/primary"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="@+id/basketItemImage"
@@ -74,8 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="@{String.valueOf(basketObject.yemek_siparis_adet)}"
-                    android:textColor="@color/dark"
+                    android:textColor="@color/textColor"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="@+id/basketItemPrice"
                     app:layout_constraintEnd_toEndOf="@+id/basketItemDelete" />

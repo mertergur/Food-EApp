@@ -19,7 +19,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@color/background"
         tools:context=".ui.fragment.HomePageFragment">
 
         <TextView
@@ -30,7 +30,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/poppins_medium"
             android:text= "@{@string/hello(userName)}"
-            android:textColor="@color/dark"
+            android:textColor="@color/textColor"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -93,19 +93,21 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/homeRV"
-            android:adapter="@{foodsAdapter}"
-            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-            app:spanCount="3"
-            android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
+            android:adapter="@{foodsAdapter}"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/HomeSearchView" />
+            app:layout_constraintTop_toBottomOf="@+id/HomeSearchView"
+            app:layout_constraintVertical_bias="0.0"
+            app:spanCount="3" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="white">#FFFFFF</color>
+    <color name="background">#FFFFFF</color>
     <color name="light">#F4F4F4</color>
     <color name="gray">#A3A3A3</color>
-    <color name="dark">#2D2D2D</color>
+    <color name="textColor">#2D2D2D</color>
     <color name="success">#2FDB5F</color>
     <color name="error">#F77272</color>
     <color name="primaryLight">#67E5CE</color>

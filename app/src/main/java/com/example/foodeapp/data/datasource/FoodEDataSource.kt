@@ -6,175 +6,196 @@ import android.os.Bundle
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.util.Log
+import android.widget.EditText
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.foodeapp.MainActivity
 import com.example.foodeapp.R
+import com.example.foodeapp.data.entity.Address
 import com.example.foodeapp.data.entity.Basket
+import com.example.foodeapp.data.entity.Cards
 import com.example.foodeapp.data.entity.Favs
 import com.example.foodeapp.data.entity.Foods
 import com.example.foodeapp.data.entity.Users
+import com.example.foodeapp.retrofit.FoodsDao
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class FoodEDataSource {
+class FoodEDataSource(var fdao: FoodsDao, var collectionUser: CollectionReference) {
+
+    var auth: FirebaseAuth = Firebase.auth
+    var favList = MutableLiveData<List<Favs>>()
 
     suspend fun uploadFoods(): List<Foods> =
-        withContext(Dispatchers.IO){
-            val foodList = ArrayList<Foods>()
-            val f1 = Foods(1, "Ayran", "ayran", 25)
-            val f2 = Foods(2, "Baklava", "baklava", 85)
-            val f3 = Foods(3, "Fanta", "fanta", 25)
-            val f4 = Foods(4, "Izgara Somon", "izgarasomon", 200)
-            val f5 = Foods(5, "Izgara Tavuk", "izgaratavuk", 170)
-            val f6 = Foods(6, "Kadayıf", "kadayif", 75)
-            val f7 = Foods(7, "Kahve", "kahve", 70)
-            val f8 = Foods(8, "Köfte", "kofte", 150)
-            val f9 = Foods(9, "Lazanya", "lazanya", 135)
-            val f10 = Foods(10, "Makarna", "makarna", 110)
-            val f11 = Foods(11, "Pizza", "pizza", 130)
-            val f12 = Foods(12, "Su", "su", 15)
-            val f13 = Foods(13, "Sütlaç", "sutlac", 75)
-            val f14 = Foods(14, "Tiramisu", "tiramisu", 75)
+            fdao.loadFoods().yemekler ?: listOf()
 
-
-            foodList.add(f1)
-            foodList.add(f2)
-            foodList.add(f3)
-            foodList.add(f4)
-            foodList.add(f5)
-            foodList.add(f6)
-            foodList.add(f7)
-            foodList.add(f8)
-            foodList.add(f9)
-            foodList.add(f10)
-            foodList.add(f11)
-            foodList.add(f12)
-            foodList.add(f13)
-            foodList.add(f14)
-
-            return@withContext foodList
-        }
-
-    suspend fun search(searchKeyWord: String): List<Foods> =
-        withContext(Dispatchers.IO){
-            val foodList = ArrayList<Foods>()
-            val f1 = Foods(1, "Ayran", "ayran", 25)
-            foodList.add(f1)
-
-            return@withContext foodList
-        }
 
     suspend fun addBasket(yemek_adi: String, yemek_resim_adi:String, yemek_fiyat: Int, yemek_siparis_adet: Int, kullanici_adi: String){
-
-        Log.e("addBasket","$yemek_siparis_adet adet $yemek_adi $yemek_fiyat karşılığında $kullanici_adi adlı kullanıcının sepetine eklendi. Yemek resmi: $yemek_resim_adi")
+        fdao.addFoodToBasket(yemek_adi, yemek_resim_adi, yemek_fiyat, yemek_siparis_adet, kullanici_adi)
     }
 
-    suspend fun login(context: Context, fragment: Fragment, email: String, password: String) {
-        val userList = ArrayList<Users>()
+     fun login(context: Context, fragment: Fragment) {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val userDoc = collectionUser.document(currentUser!!.uid)
+        userDoc.get().addOnSuccessListener { documentSnapshot ->
+            if (documentSnapshot.exists()) {
+                val userAddress = ArrayList<Address>()
+                val userCard = ArrayList<Cards>()
+                val addressesMap = documentSnapshot.get("addresses") as? List<Map<String, Any>>
+                val cardsMap = documentSnapshot.get("creditCards") as? List<Map<String, Any>>
+                val favoriteProductIds =
+                    documentSnapshot.get("favoriteProductIds") as ArrayList<String>
 
-
-        val user1 = Users(1,"mert ergür","mert2626@live.com","05369548515","123123")
-        val user2 = Users(2,"sude sünör","sude2626@live.com","05331112222","321321")
-        userList.add(user1)
-        userList.add(user2)
-
-        var user = Users(0,"","", "","")
-        userList.forEach {
-            if (it.user_email == email) {
-                user = it
-            }
-        }
-
-        if(email == user.user_email && password == user.user_password){
-            val intent = Intent(context, MainActivity::class.java)
-            intent.putExtra("user", user)
-            context.startActivity(intent)
-            fragment.requireActivity().finish()
-        }else{
-            Log.e("giriş","hatalı giriş")
-        }
-    }
-
-    suspend fun uploadFavs(user: Users): List<Favs> =
-        withContext(Dispatchers.IO) {
-            val favList = ArrayList<Favs>()
-            val userFavList = ArrayList<Favs>()
-
-            val fav1 = Favs(1, "Baklava", "baklava", 85, 1)
-            val fav2 = Favs(2, "Fanta", "fanta", 25, 1)
-            val fav3 = Favs(3, "Kahve", "kahve", 70, 1)
-            val fav4 = Favs(4, "Köfte", "kofte", 150, 1)
-            val fav5 = Favs(5, "Lazanya", "lazanya", 135, 1)
-            val fav6 = Favs(6, "Makarna", "makarna", 110, 2)
-            val fav7 = Favs(7, "Sütlaç", "sutlac", 75, 2)
-
-            favList.add(fav1)
-            favList.add(fav2)
-            favList.add(fav3)
-            favList.add(fav4)
-            favList.add(fav5)
-            favList.add(fav6)
-            favList.add(fav7)
-
-                favList.forEach {
-                    if (it.fav_kullanici_id == user.user_id) {
-                        userFavList.add(it)
+                if (addressesMap != null) {
+                    for (address in addressesMap) {
+                        val addressTitle = address["address_name"] as? String ?: ""
+                        val addressDetail = address["address_detail"] as? String ?: ""
+                        userAddress.add(Address(addressTitle, addressDetail))
+                        Log.e("adres", addressTitle)
+                        Log.e("adres", addressDetail)
                     }
                 }
 
+                if (cardsMap != null) {
+                    for (card in cardsMap) {
+                        val cardTitle = card["card_title"] as? String ?: ""
+                        val cardNumber = card["card_number"] as? String ?: ""
+                        val cardExpDate = card["card_exp_date"] as? String ?: ""
+                        val cardCvv = card["card_cvv"] as? String ?: ""
+                        userCard.add(Cards(cardTitle, cardNumber, cardExpDate, cardCvv))
+                    }
+                }
+                val fullName = documentSnapshot.getString("fullName") ?: ""
+                val phone = documentSnapshot.getString("phoneNumber") ?: ""
+                val selectedAddressIndex = documentSnapshot.getString("selectedAddressIndex") ?: ""
+                val selectedCardIndex = documentSnapshot.getString("selectedCardIndex") ?: ""
 
 
-            return@withContext userFavList
+                val intent = Intent(context, MainActivity::class.java)
+                val user = Users(
+                    fullName,
+                    phone,
+                    favoriteProductIds,
+                    selectedAddressIndex,
+                    selectedCardIndex,
+                    userAddress,
+                    userCard
+                )
+                intent.putExtra("user", user)
+                context.startActivity(intent)
+                fragment.requireActivity().finish()
+
+
+            }
         }
+    }
 
-    suspend fun uploadBasket(user: Users): List<Basket> =
-        withContext(Dispatchers.IO){
-            val basketList = ArrayList<Basket>()
-            val userBasketList = ArrayList<Basket>()
-
-            val b1 = Basket(1,"Ayran","ayran",25,10,"mert2626@live.com")
-            val b2 = Basket(2,"Baklava","baklava",85,1,"mert2626@live.com")
-            val b3 = Basket(3,"Fanta","fanta",25,1,"mert2626@live.com")
-            val b4 = Basket(3,"Pizza","pizza",130,3,"sude2626@live.com")
-            val b5 = Basket(3,"Makarna","makarna",110,1,"sude2626@live.com")
-            val b6 = Basket(3,"Lazanya","lazanya",135,2,"sude2626@live.com")
-
-
-            val f9 = Foods(9, "Lazanya", "lazanya", 135)
-            val f10 = Foods(10, "Makarna", "makarna", 110)
-            val f11 = Foods(11, "Pizza", "pizza", 130)
-
-            basketList.add(b1)
-            basketList.add(b2)
-            basketList.add(b3)
-            basketList.add(b4)
-            basketList.add(b5)
-            basketList.add(b6)
-
-            basketList.forEach {
-                if(it.kullanici_adi == user.user_email){
-                    userBasketList.add(it)
-                }else{
-                    println("bune")
+    suspend fun uploadFavs(user: Users): MutableLiveData<List<Favs>> {
+        collectionUser.document(auth.currentUser!!.uid).addSnapshotListener { value, error ->
+            if (value != null || error != null) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    val foods = uploadFoods()
+                    user.user_favs = value?.get("favoriteProductIds") as ArrayList<String>
+                    val favListUser = ArrayList<Favs>()
+                    favListUser.clear()
+                    for (i in user.user_favs) {
+                        for (f in foods) {
+                            if (f.yemek_id == i.toInt()) {
+                                favListUser.add(
+                                    Favs(
+                                        i.toInt(),
+                                        f.yemek_adi,
+                                        f.yemek_resim_adi,
+                                        f.yemek_fiyat
+                                    )
+                                )
+                            }
+                        }
+                    }
+                    favList.postValue(favListUser)
                 }
             }
-
-            return@withContext userBasketList
         }
 
-    suspend fun removeItemBasket(basket_id: Int){
+        return this.favList
+    }
+
+
+    suspend fun uploadBasket(user_email: String): List<Basket> =
+        withContext(Dispatchers.IO) {
+            return@withContext fdao.getBasket(user_email).sepet_yemekler
+        }
+
+    suspend fun removeItemBasket(basket_id: Int, user_name: String) {
+        fdao.removeFoodFromBasket(basket_id, user_name)
         Log.e("Basket Item Remove", "$basket_id removed from basket")
     }
 
-    suspend fun register(full_name: String, email: String,phone: String, password: String){
-        var user = Users(1,full_name,email,phone,password)
+    fun register(context: Context, fragment: Fragment, full_name: String, email: String, phone: String, password: String) {
+        if (email.isNotEmpty() && password.isNotEmpty()) {
+            auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    // kullanıcı oluşturuldu
+                    val userFirebase = FirebaseAuth.getInstance().currentUser
+                    val userDoc = collectionUser.document(userFirebase!!.uid)
+
+                    val userData = hashMapOf(
+                        "fullName" to full_name,
+                        "phoneNumber" to phone,
+                        "selectedAddressIndex" to "0",
+                        "selectedCardIndex" to "0",
+                        "favoriteProductIds" to listOf<String>(),
+                        "addresses" to listOf<String>(),
+                        "creditCards" to listOf<String>()
+                    )
+                    userDoc.set(userData).addOnCompleteListener {
+                        Log.e("Firestore", "Kullanıcı bilgileri başarıyla kaydedildi.")
+                        val intent = Intent(context, MainActivity::class.java)
+                        val user = Users(
+                            full_name.trim(),
+                            phone.trim(),
+                            ArrayList(),
+                            "0",
+                            "0",
+                            ArrayList(),
+                            ArrayList(),
+                        )
+                        intent.putExtra("user", user)
+                        context.startActivity(intent)
+                        fragment.requireActivity().finish()
+                    }.addOnFailureListener { e ->
+                        Log.e("Firestore", "kullanıcı bilgileri kaydedilirken hata oluştu!", e)
+                    }
+                }
+            }.addOnFailureListener { exception ->
+                Toast.makeText(context, exception.localizedMessage, Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
-    suspend fun removeFav(food_id: Int){
-        Log.e("Fav Item Remove", "$food_id removed from favorites")
+    fun removeFav(foodId: Int) {
+        val userRef = collectionUser.document(auth.currentUser!!.uid)
+        userRef.update("favoriteProductIds", FieldValue.arrayRemove(foodId.toString()))
     }
 
+    fun addFav(foodId: Int) {
+        val userRef = collectionUser.document(auth.currentUser!!.uid)
+        userRef.update("favoriteProductIds", FieldValue.arrayUnion(foodId.toString()))
+    }
 }

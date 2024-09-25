@@ -13,6 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/background"
         tools:context=".ui.fragment.LoginFragment">
 
         <TextView
@@ -23,7 +24,7 @@
             android:layout_marginTop="8dp"
             android:fontFamily="@font/bebas_neue"
             android:text="@string/login_title"
-            android:textColor="@color/dark"
+            android:textColor="@color/textColor"
             android:textSize="48sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -71,6 +72,7 @@
                 android:fontFamily="@font/poppins_medium"
                 android:hint="@string/email"
                 android:inputType="text|textEmailAddress"
+                android:textColor="@color/textColor"
                 android:textColorHighlight="@color/primary"
                 android:textColorHint="@color/primary" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -81,7 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="24dp"
             android:textColorHint="@color/primary"
             app:boxCornerRadiusBottomEnd="25dp"
             app:boxCornerRadiusTopStart="25dp"
@@ -90,7 +92,7 @@
             app:cursorColor="@color/primary"
             app:helperTextTextColor="@color/primary"
             app:hintTextColor="@color/primaryDark"
-            app:layout_constraintBottom_toTopOf="@+id/textViewForgotPassword"
+            app:layout_constraintBottom_toTopOf="@+id/buttonLogin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:passwordToggleEnabled="true"
@@ -106,22 +108,10 @@
                 android:fontFamily="@font/poppins_medium"
                 android:hint="@string/password"
                 android:inputType="text|textPassword"
+                android:textColor="@color/textColor"
                 android:textColorHighlight="@color/primary"
                 android:textColorHint="@color/primary" />
         </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/textViewForgotPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="32dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="@string/forgot_password"
-            android:textColor="@color/gray"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@+id/buttonLogin"
-            app:layout_constraintEnd_toEndOf="parent" />
 
         <Button
             android:id="@+id/buttonLogin"
@@ -132,10 +122,11 @@
             android:layout_marginBottom="32dp"
             android:backgroundTint="@color/primary"
             android:fontFamily="@font/bebas_neue"
+            android:onClick="@{() -> loginFragment.loginButton(emailEditText.getText().toString(), passwordEditText.getText().toString())}"
             android:text="@string/login_title"
             android:textAllCaps="true"
+            android:textColor="@android:color/white"
             android:textSize="24sp"
-            android:onClick="@{() -> loginFragment.loginButton(emailEditText.getText().toString(), passwordEditText.getText().toString())}"
             app:layout_constraintBottom_toTopOf="@+id/textViewGoToRegister"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -147,8 +138,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:fontFamily="@font/poppins_medium"
-            android:text="@string/create_account"
             android:onClick="@{() -> loginFragment.goToRegister()}"
+            android:text="@string/create_account"
             android:textColor="@color/gray"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"

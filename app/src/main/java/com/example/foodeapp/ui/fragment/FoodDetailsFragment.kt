@@ -11,25 +11,32 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.example.foodeapp.R
 import com.example.foodeapp.data.entity.Favs
 import com.example.foodeapp.data.entity.Foods
 import com.example.foodeapp.data.entity.Users
 import com.example.foodeapp.databinding.FragmentFoodDetailsBinding
+import com.example.foodeapp.ui.viewmodel.FavViewModel
 import com.example.foodeapp.ui.viewmodel.FoodDetailsViewModel
 import com.example.foodeapp.ui.viewmodel.HomePageViewModel
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class FoodDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentFoodDetailsBinding
-    private lateinit var viewModel: FoodDetailsViewModel
+    private val viewModel: FoodDetailsViewModel by viewModels()
+    private val viewModelFavs: FavViewModel by viewModels()
     private  var favIsChecked = false
     private var counter = 1
-    private var favList = ArrayList<Favs>()
-
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,38 +45,38 @@ class FoodDetailsFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_food_details, container, false)
         binding.foodDetailsFragment = this
+        auth = Firebase.auth
+        val db = Firebase.firestore
+        val userRef = db.collection("users").document(auth.currentUser!!.uid)
+        val user = requireActivity().intent.getSerializableExtra("user") as Users
+        viewModelFavs.user = user
+
 
         binding.foodCounter = counter.toString()
         val bundle: FoodDetailsFragmentArgs by navArgs()
         val food = bundle.food
-        val user = bundle.user
+
+        userRef.get().addOnSuccessListener {
+            val faviroteProductIds = it.get("favoriteProductIds") as? MutableList<String> ?: mutableListOf()
+            if(faviroteProductIds.contains(food.yemek_id.toString())){
+                favIsChecked = true
+                binding.foodFavButton.setImageResource(R.drawable.fav_24)
+            }else{
+                favIsChecked = false
+                binding.foodFavButton.setImageResource(R.drawable.unfav_24)
+            }
+        }
 
         binding.subTotalPrice = (food.yemek_fiyat * counter).toString()
         binding.foodObject = food
-        binding.userObject = user
 
-
-        binding.foodDetailsImageView.setImageResource(
-            resources.getIdentifier(
-                food.yemek_resim_adi,
-                "drawable",
-                requireContext().packageName
-            )
-        )
-
-        uploadFav(food)
-
-
+        val url = "http://kasimadalan.pe.hu/yemekler/resimler/${food.yemek_resim_adi}"
+        Glide.with(requireContext()).load(url).override(500,700).into(binding.foodDetailsImageView)
 
 
         return binding.root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val tempViewModel: FoodDetailsViewModel by viewModels()
-        viewModel = tempViewModel
-    }
 
     fun subTotalButton(choice: Char, price: Int, oldCount: String){
 
@@ -86,28 +93,30 @@ class FoodDetailsFragment : Fragment() {
         findNavController().navigateUp()
     }
 
-    fun favButton(food: Foods){
-        var favedItem = Favs(1,food.yemek_adi,food.yemek_resim_adi,food.yemek_fiyat,1)
-
+    fun favButton(foodId: Int){
         favIsChecked = !favIsChecked
         if(favIsChecked){
+            viewModelFavs.addFav(foodId)
             binding.foodFavButton.setImageResource(R.drawable.fav_24)
-            favList.add(favedItem)
-            println(favedItem.fav_id.toString())
-            Snackbar.make(requireView(),"${food.yemek_adi} favorilere eklendi.",Snackbar.LENGTH_SHORT).show()
+
         }else{
+           viewModelFavs.removeFav(foodId)
             binding.foodFavButton.setImageResource(R.drawable.unfav_24)
-            favList.remove(favedItem)
-            Snackbar.make(requireView(),"${food.yemek_adi} favorilerden kaldırıldı.",Snackbar.LENGTH_SHORT).show()
 
         }
     }
 
-    fun addBasketButton(yemek_adi: String, yemek_resim_adi:String, yemek_fiyat: String, yemek_siparis_adet: String, kullanici_adi: String){
-        viewModel.addBasket(yemek_adi, yemek_resim_adi, yemek_fiyat.toInt(), yemek_siparis_adet.toInt(),kullanici_adi)
+    fun addBasketButton(yemek_adi: String, yemek_resim_adi:String, yemek_fiyat: String, yemek_siparis_adet: String){
+        val userEmail = auth.currentUser?.email
+        if(userEmail != null) {
+            viewModel.addBasket(
+                yemek_adi,
+                yemek_resim_adi,
+                yemek_fiyat.toInt(),
+                yemek_siparis_adet.toInt(),
+                userEmail
+            )
+            Snackbar.make(requireView(), "$yemek_adi  ${getString(R.string.added_to_cart)}", Snackbar.LENGTH_SHORT).show()
+        }
     }
-
-    fun uploadFav(food: Foods){
-    }
-
 }

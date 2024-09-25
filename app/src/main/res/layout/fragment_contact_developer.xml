@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="contactDeveloperFragment"
+            type="com.example.foodeapp.ContactDeveloperFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        tools:context=".ContactDeveloperFragment">
+
+        <ImageButton
+            android:id="@+id/imageViewBackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="16dp"
+            android:backgroundTint="@android:color/transparent"
+            android:onClick="@{() -> contactDeveloperFragment.backButton()}"
+            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView"
+            app:srcCompat="@drawable/baseline_arrow_back_ios_24"
+            app:tint="@color/textColor" />
+
+        <TextView
+            android:id="@+id/textViewMail"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_weight="3"
+            android:autoLink="email"
+            android:text="@string/mail"
+            android:textColorLink="@color/primaryDark"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/imageViewGithub3"
+            app:layout_constraintTop_toBottomOf="@+id/textViewGithub" />
+
+        <ImageView
+            android:id="@+id/imageViewGithub3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewMail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewMail"
+            app:srcCompat="@drawable/mail_icon"
+            app:tint="@color/primary" />
+
+        <TextView
+            android:id="@+id/textViewGithub"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_weight="3"
+            android:autoLink="web"
+            android:text="@string/github"
+            android:textColorLink="@color/primaryDark"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/imageViewGithub"
+            app:layout_constraintTop_toBottomOf="@+id/textViewLinkedin" />
+
+        <ImageView
+            android:id="@+id/imageViewGithub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewGithub"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewGithub"
+            app:srcCompat="@drawable/github_icon"
+            app:tint="@color/primary" />
+
+        <ImageView
+            android:id="@+id/imageViewLinkedin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewLinkedin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewLinkedin"
+            app:srcCompat="@drawable/likedin_icon"
+            app:tint="@color/primary" />
+
+        <TextView
+            android:id="@+id/textViewLinkedin"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_weight="3"
+            android:autoLink="web"
+            android:text="@string/linkedin"
+            android:textColorLink="@color/primaryDark"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/imageViewLinkedin"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/bebas_neue"
+            android:text="@string/contact_developer"
+            android:textColor="@color/textColor"
+            android:textSize="36sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

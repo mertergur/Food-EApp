@@ -18,10 +18,9 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(var fRepo: FoodERepository): ViewModel() {
 
-
-    fun login(context: Context, fragment: Fragment, email: String, password: String){
+    fun login(context: Context, fragment: Fragment){
         CoroutineScope(Dispatchers.Main).launch {
-            fRepo.login(context, fragment, email, password)
+            fRepo.login(context, fragment)
         }
     }
 

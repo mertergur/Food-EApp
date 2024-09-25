@@ -2,13 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
-    <data>
-        <variable
-            name="favObject"
-            type="com.example.foodeapp.data.entity.Favs" />
-    </data>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,8 +34,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="@{favObject.fav_yemek_adi}"
-                    android:textColor="@color/dark"
+                    android:textColor="@color/textColor"
                     android:textSize="18sp"
                     app:layout_constraintStart_toEndOf="@+id/favItemImage"
                     app:layout_constraintTop_toTopOf="@+id/favItemImage" />
@@ -52,7 +44,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bebas_neue"
-                    android:text="@{@string/price(favObject.fav_yemek_fiyat)}"
                     android:textColor="@color/primary"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="@+id/favItemImage"

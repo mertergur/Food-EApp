@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="accountEditFragment"
+            type="com.example.foodeapp.ui.fragment.AccountEditFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        tools:context=".ui.fragment.AccountEditFragment">
+
+        <ImageButton
+            android:id="@+id/foodDetailsBackButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@android:color/transparent"
+            android:onClick="@{() -> accountEditFragment.backButton()}"
+            app:tint="@color/textColor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_arrow_back_ios_24" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewDeleteAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:onClick="@{()-> accountEditFragment.buttonDeleteAccount()}"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardElevation="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPageTitle">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    app:srcCompat="@drawable/delete_forever_24"
+                    app:tint="@color/error" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/delete_account"
+                    android:textColor="@color/error"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutRegister3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:textColorHint="@color/primary"
+            app:boxCornerRadiusBottomEnd="25dp"
+            app:boxCornerRadiusTopStart="25dp"
+            app:boxStrokeColor="@color/primary"
+            app:counterTextColor="@color/primary"
+            app:cursorColor="@color/primary"
+            app:helperTextTextColor="@color/primary"
+            app:hintTextColor="@color/primaryDark"
+            app:layout_constraintBottom_toTopOf="@+id/cardViewChangePassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:placeholderTextColor="@color/primary"
+            app:prefixTextColor="@color/primary"
+            app:suffixTextColor="@color/primary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="@string/email"
+                android:inputType="text|textEmailAddress"
+                android:textColorHighlight="@color/primary"
+                android:textColorHint="@color/primary" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewChangePassword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:backgroundTint="@android:color/transparent"
+            android:onClick="@{() -> accountEditFragment.goToChangePassword()}"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/buttonUpdate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/imageViewAccount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="1"
+                    app:layout_constraintBottom_toBottomOf="@+id/textViewAccount"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textViewAccount"
+                    app:srcCompat="@drawable/lock" />
+
+                <TextView
+                    android:id="@+id/textViewAccount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="3"
+                    android:text="@string/change_password"
+                    android:textColor="@color/textColor"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageViewAccount"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
+                    app:layout_constraintBottom_toBottomOf="@+id/textViewAccount"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textViewAccount"
+                    app:srcCompat="@drawable/baseline_keyboard_arrow_right_24"
+                    app:tint="@color/primary" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/buttonUpdate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="32dp"
+            android:backgroundTint="@color/primary"
+            android:fontFamily="@font/bebas_neue"
+            android:onClick="@{() -> accountEditFragment.buttonUpdate(firstNameEditText,lastNameEditText,emailEditText)}"
+            android:text="@string/update"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutRegister1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            android:textColorHint="@color/primary"
+            app:boxCornerRadiusBottomEnd="25dp"
+            app:boxCornerRadiusTopStart="25dp"
+            app:boxStrokeColor="@color/primary"
+            app:counterTextColor="@color/primary"
+            app:cursorColor="@color/primary"
+            app:helperTextTextColor="@color/primary"
+            app:hintTextColor="@color/primaryDark"
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayoutRegister3"
+            app:layout_constraintEnd_toStartOf="@+id/textInputLayoutRegister2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:placeholderTextColor="@color/primary"
+            app:prefixTextColor="@color/primary"
+            app:suffixTextColor="@color/primary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/firstNameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="@string/first_name"
+                android:inputType="text"
+                android:textColorHighlight="@color/primary"
+                android:textColorHint="@color/primary" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutRegister2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:textColorHint="@color/primary"
+            app:boxCornerRadiusBottomEnd="25dp"
+            app:boxCornerRadiusTopStart="25dp"
+            app:boxStrokeColor="@color/primary"
+            app:counterTextColor="@color/primary"
+            app:cursorColor="@color/primary"
+            app:helperTextTextColor="@color/primary"
+            app:hintTextColor="@color/primaryDark"
+            app:layout_constraintBottom_toBottomOf="@+id/textInputLayoutRegister1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textInputLayoutRegister1"
+            app:placeholderTextColor="@color/primary"
+            app:prefixTextColor="@color/primary"
+            app:suffixTextColor="@color/primary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/lastNameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="@string/last_name"
+                android:inputType="text"
+                android:textColorHighlight="@color/primary"
+                android:textColorHint="@color/primary" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textViewPageTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/bebas_neue"
+            android:text="ACCOUNT AND PROFILE"
+            android:textColor="@color/textColor"
+            android:textSize="36sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/foodDetailsBackButton2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

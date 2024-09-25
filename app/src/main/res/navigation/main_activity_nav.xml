@@ -33,7 +33,26 @@
         android:id="@+id/profileFragment"
         android:name="com.example.foodeapp.ui.fragment.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_accountEditFragment"
+            app:destination="@id/accountEditFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_addAddressFragment"
+            app:destination="@id/addAddressFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_myAddressesFragment"
+            app:destination="@id/myAddressesFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_addCardFragment"
+            app:destination="@id/addCardFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_paymentMethodsFragment"
+            app:destination="@id/paymentMethodsFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_contactDeveloperFragment"
+            app:destination="@id/contactDeveloperFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favFragment"
         android:name="com.example.foodeapp.ui.fragment.FavFragment"
@@ -43,5 +62,77 @@
         android:id="@+id/basketFragment"
         android:name="com.example.foodeapp.ui.fragment.BasketFragment"
         android:label="fragment_basket"
-        tools:layout="@layout/fragment_basket" />
+        tools:layout="@layout/fragment_basket" >
+        <action
+            android:id="@+id/action_basketFragment_to_checkoutFragment"
+            app:destination="@id/checkoutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountEditFragment"
+        android:name="com.example.foodeapp.ui.fragment.AccountEditFragment"
+        android:label="AccountEditFragment"
+        tools:layout="@layout/fragment_account_edit">
+        <action
+            android:id="@+id/action_accountEditFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.example.foodeapp.ui.fragment.ChangePasswordFragment"
+        android:label="ChangePasswordFragment" />
+    <fragment
+        android:id="@+id/addAddressFragment"
+        android:name="com.example.foodeapp.ui.fragment.AddAddressFragment"
+        android:label="fragment_add_address"
+        tools:layout="@layout/fragment_add_address" />
+    <fragment
+        android:id="@+id/myAddressesFragment"
+        android:name="com.example.foodeapp.ui.fragment.MyAddressesFragment"
+        android:label="MyAddressesFragment" >
+        <action
+            android:id="@+id/action_myAddressesFragment_to_addAddressFragment"
+            app:destination="@id/addAddressFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addCardFragment"
+        android:name="com.example.foodeapp.ui.fragment.AddCardFragment"
+        android:label="AddCardFragment" />
+    <fragment
+        android:id="@+id/paymentMethodsFragment"
+        android:name="com.example.foodeapp.ui.fragment.PaymentMethodsFragment"
+        android:label="PaymentMethodsFragment" >
+        <action
+            android:id="@+id/action_paymentMethodsFragment_to_addCardFragment"
+            app:destination="@id/addCardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="com.example.foodeapp.ui.fragment.CheckoutFragment"
+        android:label="CheckoutFragment" >
+        <argument
+            android:name="totalPrice"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <action
+            android:id="@+id/action_checkoutFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_checkoutFragment_to_orderSuccessFragment"
+            app:destination="@id/orderSuccessFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderSuccessFragment"
+        android:name="com.example.foodeapp.ui.fragment.OrderSuccessFragment"
+        android:label="fragment_order_success"
+        tools:layout="@layout/fragment_order_success" >
+        <action
+            android:id="@+id/action_orderSuccessFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/contactDeveloperFragment"
+        android:name="com.example.foodeapp.ContactDeveloperFragment"
+        android:label="fragment_contact_developer"
+        tools:layout="@layout/fragment_contact_developer" />
 </navigation>

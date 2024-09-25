@@ -1,21 +1,31 @@
 package com.example.foodeapp.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.foodeapp.MainActivity
 import com.example.foodeapp.R
+import com.example.foodeapp.data.entity.Address
+import com.example.foodeapp.data.entity.Cards
 import com.example.foodeapp.data.entity.Users
 import com.example.foodeapp.databinding.FragmentRegisterBinding
 import com.example.foodeapp.ui.viewmodel.RegisterViewModel
 import com.example.foodeapp.util.coloredString
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,6 +33,8 @@ class RegisterFragment : Fragment() {
 
     private lateinit var binding: FragmentRegisterBinding
     private lateinit var viewModel: RegisterViewModel
+
+    private lateinit var auth: FirebaseAuth
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,11 +54,12 @@ class RegisterFragment : Fragment() {
         super.onCreate(savedInstanceState)
         val tempViewModel: RegisterViewModel by viewModels()
         viewModel = tempViewModel
+
+        auth = Firebase.auth
     }
 
-    fun registerButton(full_name: String, email: String,phone: String, password: String){
-        viewModel.register(full_name, email, phone, password)
-        findNavController().navigate(R.id.action_register_to_login)
+    fun registerButton(email: String, full_name: String, phone: String, password: String){
+        viewModel.register(requireContext(), this@RegisterFragment, email,full_name,phone,password)
     }
 
     fun goBack(){

@@ -19,7 +19,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFFF"
+        android:background="@color/background"
         tools:context=".ui.fragment.BasketFragment">
 
         <TextView
@@ -30,18 +30,18 @@
             android:layout_marginTop="32dp"
             android:fontFamily="@font/bebas_neue"
             android:text="@string/basket_title"
-            android:textColor="@color/dark"
+            android:textColor="@color/textColor"
             android:textSize="48sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/basketRV"
-            android:adapter="@{basketAdapter}"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
+            android:adapter="@{basketAdapter}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/textViewTotal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -55,6 +55,7 @@
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/bebas_neue"
             android:text="@string/basket_total"
+            android:textColor="@color/textColor"
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/textViewTotalPrice"
             app:layout_constraintStart_toStartOf="parent" />
@@ -82,11 +83,23 @@
             android:backgroundTint="@color/primary"
             android:fontFamily="@font/bebas_neue"
             android:onClick="@{() -> basketFragment.checkoutButton()}"
-            android:text="@string/proceed_to_checkout"
+            android:text="@string/proceed_to_payment"
             android:textAllCaps="true"
+            android:textColor="@android:color/white"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageViewEmptyBasket"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewBasket"
+            app:srcCompat="@drawable/empty_basket" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,35 +1,105 @@
 <resources>
-    <string name="app_name">Food-E</string>
+    <string name="app_name" translatable="false">Food-E</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+    <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
+
     <!-- HomePage Fragment Strings -->
     <string name="hello">Hello, %s!</string>
-    <string name="campaign_image">Campaign Image</string>
-    <string name="location_icon">location icon</string>
+    <string name="campaign_image">Campaign image</string>
+    <string name="location_icon">Location icon</string>
 
     <!-- Login Fragment Strings -->
-    <string name="register_title">Register</string>
-    <string name="login_title">Login</string>
-    <string name="email">E-mail</string>
+    <string name="register_title">REGISTER</string>
+    <string name="login_title">LOGIN</string>
+    <string name="email" translatable="false">E-mail</string>
     <string name="password">Password</string>
-    <string name="forgot_password">Forgot Password</string>
+    <string name="forgot_password">Forgot password</string>
     <string name="create_account">Don\'t have an account? Register</string>
-    <string name="proceed_to_checkout">PROCEED TO CHECKOUT</string>
     <!-- Register Fragment Strings -->
     <string name="already_account">Already have an account? Login</string>
-    <string name="full_name">Full Name</string>
+    <string name="full_name">Full name</string>
     <string name="phone">Phone</string>
     <!-- Food Details Fragment Strings  -->
     <string name="delivery_time">32 mins</string>
-    <string name="price">%s ₺</string>
-    <string name="quantity">quantity</string>
-    <string name="sub_total">sub total</string>
-    <string name="add_basket">add to basket</string>
+    <string name="price" translatable="false">%s ₺</string>
+    <string name="quantity">Quantity</string>
+    <string name="sub_total">Sub total</string>
+    <string name="add_basket">Add to cart</string>
+    <string name="added_to_cart">added to cart</string>
     <!-- Basket Fragment Strings  -->
     <string name="basket_title">basket</string>
     <string name="basket_total">total</string>
+    <!-- Checkout Fragment Strings -->
+    <string name="proceed_to_payment">PROCEED TO PAYMENT</string>
+    <string name="payment_title">Payment</string>"
+    <string name="confirm_order">CONFIRM ORDER</string>"
+    <string name="add_promotion_code">ADD PROMOTION CODE</string>
+    <string name="invalid_promo">Invalid promotional coupon</string>
+    <string name="please_select">Please select</string>
+    <string name="price_title">PRICE</string>
+    <string name="please_select_address_and_card">Please select address and card</string>
+
     <!-- Fav Fragment Strings  -->
-    <string name="fav_title">liked</string>
-    <!-- -->
+    <string name="fav_title">LIKED</string>
+    <!-- Account Edit Fragment Strings -->
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="update">UPDATE</string>
+    <string name="change_password">Change password</string>
+    <string name="delete_account">Delete account</string>
+    <string name="are_you_sure_acc_delete">Are you sure you want to permanently delete your account?</string>
+    <string name="wrong_email">Your email address is incorrect</string>
+    <string name="info_updated">Your information has been updated</string>
+    <!-- Change Password Fragment Strings -->
+    <string name="confirm_password">Confirm password</string>
+    <string name="new_password">New password</string>
+    <string name="old_password">Old password</string>
+    <string name="password_updated">Your password is being updated</string>
+    <string name="password_could_not_be_updated">Password could not be updated</string>
+    <string name="old_password_incorrect">Your old password is incorrect</string>
+    <string name="new_password_does_not_match">New password does not match</string>
+    <!-- Add Address Fragment Strings -->
+    <string name="my_addresses">MY ADDRESSES</string>
+    <!-- Add Address Fragment Strings -->
+    <string name="address">Address Line</string>
+    <string name="add_address">ADD NEW ADDRESS</string>
+    <string name="zip_code">Zip code</string>
+    <string name="city">City</string>
+    <string name="country">Country</string>
+    <string name="address_title">Address title</string>
+    <!-- Add Card Fragment Strings -->
+    <string name="add_new_card">ADD NEW CARD</string>
+    <string name="add_card">ADD CARD</string>
+    <string name="card_number">Card number</string>
+    <string name="card_exp_date" translatable="false">Expiry date</string>
+    <string name="card_cvv" translatable="false">CVV</string>
+    <string name="card_title">Card title</string>
+    <string name="fill_in_all_fields">Fill in all fields</string>
+    <!-- Payment Methods Fragment Strings -->
+    <string name="payment_methods">MY PAYMENT METHODS</string>
+    <string name="add_payment_method">ADD NEW PAYMENT METHOD</string>
+
+    <!-- Profile Fragment Strings -->
+    <string name="account_and_profile">Account and Profile</string>
+    <string name="manage_payment_methods">Manage payment methods</string>
+    <string name="manage_addresses">Manage addresses</string>
+    <string name="contact_developer">Contact Developer</string>
+    <string name="terms_and_conditions">Terms and conditions</string>
+    <string name="logout">Logout</string>
+
+    <!-- Order Success Fragment Strings -->
+    <string name="order_confirmed">ORDER CONFIRMED!</string>
+    <string name="order_confirmed_desc">Hang on Tight! We’ve received your order and we’ll bring it to you ASAP!</string>
+    <string name="continue_shopping">CONTINUE SHOPPING</string>
+
+    <!--Contact Developer Fragment Strings-->
+    <string name="linkedin" translatable="false">www.linkedin.com/in/mertergur</string>
+    <string name="github" translatable="false">https://github.com/mertergur</string>
+    <string name="mail" translatable="false">trewertttt@gmail.com</string>
+
 
 </resources>

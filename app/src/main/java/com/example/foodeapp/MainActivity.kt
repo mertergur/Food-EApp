@@ -29,29 +29,5 @@ class MainActivity : AppCompatActivity() {
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         NavigationUI.setupWithNavController(binding.bottomNavigationView,navHostFragment.navController)
-
-        val user = intent.getSerializableExtra("user") as Users
-
-        val bundle = Bundle()
-        bundle.putSerializable("user", user)
-
-        binding.bottomNavigationView.setOnClickListener {
-            when(it.id){
-                R.id.homePageFragment -> {
-                    navHostFragment.navController.navigate(R.id.homePageFragment, bundle)
-                }
-                R.id.favFragment -> {
-                    navHostFragment.navController.navigate(R.id.favFragment, bundle)
-                }
-                R.id.basketFragment -> {
-                    navHostFragment.navController.navigate(R.id.basketFragment, bundle)
-                }
-                R.id.profileFragment -> {
-                    navHostFragment.navController.navigate(R.id.profileFragment, bundle)
-                }
-            }
-        }
-
     }
-
 }

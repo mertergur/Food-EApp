@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="addCardFragment"
+            type="com.example.foodeapp.ui.fragment.AddCardFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        tools:context=".ui.fragment.AddCardFragment">
+
+        <ImageButton
+            android:id="@+id/addAddressBackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@android:color/transparent"
+            android:onClick="@{() -> addCardFragment.backButton()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_arrow_back_ios_24"
+            app:tint="@color/textColor" />
+
+        <TextView
+            android:id="@+id/textViewPageTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bebas_neue"
+            android:text="@string/add_new_card"
+            android:textColor="@color/textColor"
+            android:textSize="36sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/addAddressBackButton" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardBackgroundColor="#25253D"
+            app:cardCornerRadius="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPageTitle">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/worldmap" />
+
+                <ImageView
+                    android:id="@+id/cardLogo1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/chip"
+                    app:tint="#4B5B98" />
+
+                <ImageView
+                    android:id="@+id/cardLogo2"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:rotation="90"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/baseline_signal_wifi_statusbar_4_bar_24"
+                    app:tint="#4B5B98" />
+
+                <TextView
+                    android:id="@+id/cardNumbers"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/background"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="@+id/cardLogo2"
+                    app:layout_constraintStart_toStartOf="@+id/cardLogo1"
+                    app:layout_constraintTop_toBottomOf="@+id/cardLogo1" />
+
+                <TextView
+                    android:id="@+id/cardExpTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/card_exp_date"
+                    android:textColor="@color/gray"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/cardNumbers"
+                    app:layout_constraintTop_toBottomOf="@+id/cardNumbers" />
+
+                <TextView
+                    android:id="@+id/cardCVVTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/card_cvv"
+                    android:textColor="@color/gray"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toEndOf="@+id/cardExpTitle"
+                    app:layout_constraintTop_toTopOf="@+id/cardExpTitle" />
+
+                <TextView
+                    android:id="@+id/cardExpDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textColor="@color/background"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/cardExpTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/cardExpTitle" />
+
+                <TextView
+                    android:id="@+id/cardCVV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textColor="@color/background"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@+id/cardCVVTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/cardCVVTitle" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutAddCard2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:textColorHint="@color/primary"
+            app:boxCornerRadiusBottomEnd="25dp"
+            app:boxCornerRadiusTopStart="25dp"
+            app:boxStrokeColor="@color/primary"
+            app:counterTextColor="@color/primary"
+            app:cursorColor="@color/primary"
+            app:helperTextTextColor="@color/primary"
+            app:hintTextColor="@color/primaryDark"
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayoutAddCard3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:placeholderTextColor="@color/primary"
+            app:prefixTextColor="@color/primary"
+            app:suffixTextColor="@color/primary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/cardNumberEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="@string/card_number"
+                android:inputType="number"
+                android:maxLength="19"
+                android:textColorHighlight="@color/primary"
+                android:textColorHint="@color/primary" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutAddCard3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            android:textColorHint="@color/primary"
+            app:boxCornerRadiusBottomEnd="25dp"
+            app:boxCornerRadiusTopStart="25dp"
+            app:boxStrokeColor="@color/primary"
+            app:counterTextColor="@color/primary"
+            app:cursorColor="@color/primary"
+            app:helperTextTextColor="@color/primary"
+            app:hintTextColor="@color/primaryDark"
+            app:layout_constraintBottom_toTopOf="@+id/buttonAddCard"
+            app:layout_constraintEnd_toStartOf="@+id/textInputLayoutAddCard4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:placeholderTextColor="@color/primary"
+            app:prefixTextColor="@color/primary"
+            app:suffixTextColor="@color/primary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/expiryDateEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="@string/card_exp_date"
+                android:inputType="datetime|date"
+                android:maxLength="5"
+                android:textColorHighlight="@color/primary"
+                android:textColorHint="@color/primary" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutAddCard4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:textColorHint="@color/primary"
+            app:boxCornerRadiusBottomEnd="25dp"
+            app:boxCornerRadiusTopStart="25dp"
+            app:boxStrokeColor="@color/primary"
+            app:counterTextColor="@color/primary"
+            app:cursorColor="@color/primary"
+            app:helperTextTextColor="@color/primary"
+            app:hintTextColor="@color/primaryDark"
+            app:layout_constraintBottom_toTopOf="@+id/buttonAddCard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textInputLayoutAddCard3"
+            app:placeholderTextColor="@color/primary"
+            app:prefixTextColor="@color/primary"
+            app:suffixTextColor="@color/primary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/cvvEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="@string/card_cvv"
+                android:inputType="number"
+                android:maxLength="3"
+                android:textColorHighlight="@color/primary"
+                android:textColorHint="@color/primary" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/buttonAddCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/primary"
+            android:fontFamily="@font/bebas_neue"
+            android:text="@string/add_card"
+            android:onClick="@{() -> addCardFragment.buttonAddCard(cardNumberEditText.getText().toString(), expiryDateEditText.getText().toString(), cvvEditText.getText().toString())}"
+            android:textAllCaps="true"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
