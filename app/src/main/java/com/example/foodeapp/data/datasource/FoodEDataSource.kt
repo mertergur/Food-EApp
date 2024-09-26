@@ -111,7 +111,7 @@ class FoodEDataSource(var fdao: FoodsDao, var collectionUser: CollectionReferenc
             if (value != null || error != null) {
                 CoroutineScope(Dispatchers.IO).launch {
                     val foods = uploadFoods()
-                    user.user_favs = value?.get("favoriteProductIds") as ArrayList<String>
+                    user.user_favs = value?.get("favoriteProductIds") as? ArrayList<String> ?: arrayListOf()
                     val favListUser = ArrayList<Favs>()
                     favListUser.clear()
                     for (i in user.user_favs) {
